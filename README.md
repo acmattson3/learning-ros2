@@ -1,20 +1,29 @@
 # How to do ROS2 (Humble) things!
 
 Here are the tutorials I am following:
-| Tutorial                                                    | Status      |
-|-------------------------------------------------------------|-------------|
-| [ROS2 Humble](https://www.youtube.com/watch?v=Gg25GfA456o)  | In Progress |
+| Tutorial                                                             | Status      |
+|----------------------------------------------------------------------|-------------|
+| [ROS2 Humble Tutorial](https://www.youtube.com/watch?v=Gg25GfA456o)  | In Progress |
 | [MoveIt Quickstart in RViz](https://moveit.picknik.ai/humble/doc/tutorials/quickstart_in_rviz/quickstart_in_rviz_tutorial.html) | Not Started |
 
-## Useful Tools and Command
+## Useful Information
 
-### Tools
+### General Tools
 * `rqt_graph` -> See running nodes and topics.
 
-### Commands for Topics
+### All About Topics
+
+#### What are Topics?
+
+Topics are to ROS2 what global event bus signals are to Godot 4.
+
+#### Commands for Topics
+
 * `ros2 topic list` -> List all topics.
 * `ros2 topic info /topic_name` -> See information about certain topics.
 * `ros2 topic echo /topic_name` -> See traffic in a topic.
+* `ros2 interface show <interface>` -> See the interfaces (essentially structs) that make up a given interface, and the interfaces that make those up, etc., all the way down to basic types.
+
 
 
 ## Installation
