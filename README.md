@@ -1,5 +1,22 @@
 # How to do ROS2 (Humble) things!
 
+Here are the tutorials I am following:
+| Tutorial                                                    | Status      |
+|-------------------------------------------------------------|-------------|
+| [ROS2 Humble](https://www.youtube.com/watch?v=Gg25GfA456o)  | In Progress |
+| [MoveIt Quickstart in RViz](https://moveit.picknik.ai/humble/doc/tutorials/quickstart_in_rviz/quickstart_in_rviz_tutorial.html) | Not Started |
+
+## Useful Tools and Command
+
+### Tools
+* `rqt_graph` -> See running nodes and topics.
+
+### Commands for Topics
+* `ros2 topic list` -> List all topics.
+* `ros2 topic info /topic_name` -> See information about certain topics.
+* `ros2 topic echo /topic_name` -> See traffic in a topic.
+
+
 ## Installation
 
 Visit [the installation documentation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html) (or the most recent documentation online).
