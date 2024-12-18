@@ -24,6 +24,28 @@ Topics are to ROS2 what global event bus signals are to Godot 4.
 * `ros2 topic echo /topic_name` -> See traffic in a topic.
 * `ros2 interface show <interface>` -> See the interfaces (essentially structs) that make up a given interface, and the interfaces that make those up, etc., all the way down to basic types.
 
+#### Publishers
+
+Publishers are what send information to topics (for [subscribers](#subscribers) to handle. To create a publisher:
+
+* Within a pre-existing [node's](#creating-a-ros2-node) class script (in this case Python):
+    1. In `__init__`, create a publisher: 
+    ```python
+    def __init__(self):
+        ...
+        self._my_publisher = self.create_publisher(Type, "topic_name", queue_size)
+        ...
+    ```
+    2. Later in the code (say, in a timer-called function, or elsewhere), publish some data:
+    ```python
+    data = Type()
+    # Be sure to update the type however necessary before publishing!
+    self._my_publisher.publish(data)
+    ```
+
+#### Subscribers
+
+WIP
 
 
 ## Installation
@@ -98,10 +120,11 @@ Nodes are the building blocks of packages. They are what you run to do things li
 4. Within your package root, in `setup.py`, under the `console_scripts` list, add an element: `"example_node = my_package.my_node:main"`
     1. Syntax here is `ros2_executable_name = package_name.node_name:function_name`
     2. You can test your code before moving on by doing `./my_node.py`.
-5. Within your workspace root, run `colcon build` to compile your node.
+5. Add any dependencies from your new script to your `package.xml` under a depend tag.
+6. Within your workspace root, run `colcon build` to compile your node.
     1. Optionally, to not need to run `colcon build` each time you make changes to your node, run `colcon build --symlink-install`.
     2. *This may not work with C++!*
-6. At this point, to run your node via `ros2`, you will need to `source` your file again (or rerun your .bashrc via `. ~/.bashrc` if sources are defined there).
-7. Finally, you can run your node with `ros2 run my_package example_node`!
+7. At this point, to run your node via `ros2`, you will need to `source` your file again (or rerun your .bashrc via `. ~/.bashrc` if sources are defined there).
+8. Finally, you can run your node with `ros2 run my_package example_node`!
 
 That is it!

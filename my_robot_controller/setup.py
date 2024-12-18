@@ -23,6 +23,7 @@ setup(
             # test_node becomes the ROS2 executable
             # package.filename:function_name
             "test_node = my_robot_controller.my_first_node:main",
+            "draw_circle = my_robot_controller.draw_circle:main"
         ],
     },
 )
