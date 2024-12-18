@@ -6,47 +6,8 @@ Here are the tutorials I am following:
 | [ROS2 Humble Tutorial](https://www.youtube.com/watch?v=Gg25GfA456o)  | In Progress |
 | [MoveIt Quickstart in RViz](https://moveit.picknik.ai/humble/doc/tutorials/quickstart_in_rviz/quickstart_in_rviz_tutorial.html) | Not Started |
 
-## Useful Information
 
-### General Tools
-* `rqt_graph` -> See running nodes and topics.
-
-### All About Topics
-
-#### What are Topics?
-
-Topics are to ROS2 what global event bus signals are to Godot 4.
-
-#### Commands for Topics
-
-* `ros2 topic list` -> List all topics.
-* `ros2 topic info /topic_name` -> See information about certain topics.
-* `ros2 topic echo /topic_name` -> See traffic in a topic.
-* `ros2 interface show <interface>` -> See the interfaces (essentially structs) that make up a given interface, and the interfaces that make those up, etc., all the way down to basic types.
-
-#### Publishers
-
-Publishers are what send information to topics (for [subscribers](#subscribers) to handle. To create a publisher:
-
-* Within a pre-existing [node's](#creating-a-ros2-node) class script (in this case Python):
-    1. In `__init__`, create a publisher: 
-    ```python
-    def __init__(self):
-        ...
-        self._my_publisher = self.create_publisher(Type, "topic_name", queue_size)
-        ...
-    ```
-    2. Later in the code (say, in a timer-called function, or elsewhere), publish some data:
-    ```python
-    data = Type()
-    # Be sure to update the type however necessary before publishing!
-    self._my_publisher.publish(data)
-    ```
-
-#### Subscribers
-
-WIP
-
+# The Basic Necessities
 
 ## Installation
 
@@ -128,3 +89,45 @@ Nodes are the building blocks of packages. They are what you run to do things li
 8. Finally, you can run your node with `ros2 run my_package example_node`!
 
 That is it!
+
+
+# General Information
+
+## General Tools
+* `rqt_graph` -> See running nodes and topics.
+
+## All About Topics
+
+### What are Topics?
+
+Topics are to ROS2 what global event bus signals are to Godot 4.
+
+### Commands for Topics
+
+* `ros2 topic list` -> List all topics.
+* `ros2 topic info /topic_name` -> See information about certain topics.
+* `ros2 topic echo /topic_name` -> See traffic in a topic.
+* `ros2 interface show <interface>` -> See the interfaces (essentially structs) that make up a given interface, and the interfaces that make those up, etc., all the way down to basic types.
+
+### Publishers
+
+Publishers are what send information to topics (for [subscribers](#subscribers) to handle). To create a publisher:
+
+* Within a pre-existing [node's](#creating-a-ros2-node) class script (in this case Python):
+    1. In `__init__`, create a publisher: 
+    ```python
+    def __init__(self):
+        ...
+        self._my_publisher = self.create_publisher(Type, "topic_name", queue_size)
+        ...
+    ```
+    2. Later in the code (say, in a timer-called function, or elsewhere), publish some data:
+    ```python
+    data = Type()
+    # Be sure to update the type however necessary before publishing!
+    self._my_publisher.publish(data)
+    ```
+
+### Subscribers
+
+WIP
