@@ -3,8 +3,8 @@
 Here are the tutorials I am following:
 | Tutorial                                                             | Status      |
 |----------------------------------------------------------------------|-------------|
-| [ROS2 Humble Tutorial](https://www.youtube.com/watch?v=Gg25GfA456o)  | In Progress |
-| [MoveIt Quickstart in RViz](https://moveit.picknik.ai/humble/doc/tutorials/quickstart_in_rviz/quickstart_in_rviz_tutorial.html) | Not Started |
+| [ROS2 Humble Tutorial](https://www.youtube.com/watch?v=Gg25GfA456o)  | Completed |
+| [MoveIt Quickstart in RViz](https://moveit.picknik.ai/humble/doc/tutorials/quickstart_in_rviz/quickstart_in_rviz_tutorial.html) | In Progress |
 
 
 # The Basic Necessities
@@ -95,6 +95,8 @@ That is it!
 
 ## General Tools
 * `rqt_graph` -> See running nodes and topics.
+* `ros2 interface show <interface>` -> See the interfaces (essentially structs) that make up a given interface, and the interfaces that make those up, etc., all the way down to basic types.
+* `ros2 node list` -> List all running nodes.
 
 ## All About Topics
 
@@ -107,7 +109,7 @@ Topics are to ROS2 what global event bus signals are to Godot 4.
 * `ros2 topic list` -> List all topics.
 * `ros2 topic info /topic_name` -> See information about certain topics.
 * `ros2 topic echo /topic_name` -> See traffic in a topic.
-* `ros2 interface show <interface>` -> See the interfaces (essentially structs) that make up a given interface, and the interfaces that make those up, etc., all the way down to basic types.
+* `ros2 topic hz /topic_name` -> See the frequency of the topic publishing.
 
 ### Publishers
 
@@ -127,7 +129,65 @@ Publishers are what send information to topics (for [subscribers](#subscribers) 
     # Be sure to update the type however necessary before publishing!
     self._my_publisher.publish(data)
     ```
+* That is it!
 
 ### Subscribers
 
-WIP
+Subscribers are what catch information sent to topics (by [publishers](#publishers)). To create a subscriber:
+
+* Within a pre-existing [node's](#creatings-a-ros2-node) class script (in this case Python):
+    1. In `__init__`, create a subscription:
+    ```python
+    def __init__(self):
+        ...
+        self._my_subscriber = self.create_subscription(Type, "topic_name", self.callback_function, queue_size)
+        ...
+    ```
+    2. Then you need to write your callback function in your class:
+    ```python
+    def callback_function(self, msg: Type):
+        # Handle the msg as necessary.
+    ```
+* That is it!
+
+## All About Services
+
+Services are for client-server relationships, where one (client) node sends a request to another (server) node, who then responds. [Topics](#all-about-topics) are not built for these sorts of relationships.
+There is only ever one service for a particular thing (like there is one server for example.com) but there can be many clients sending requests to that one server.
+There are primarily two uses for services:
+1. Doing computations (i.e., given `a` and `b`, responds with `sum=a+b`)
+2. Managing one particular thing. For example, changing settings (i.e., a "settings" service that takes requests from other nodes to change particular settings) (in the same way that one server manages the website for example.com).
+
+### Commands for Services
+* `ros2 service list` -> List the currently running services.
+* `ros2 service type /service_name` -> List the service's interface(s).
+* `ros2 service call /service_name interface_name "{'param1': val, 'param2': val, ...}"` -> Call a (running) service manually and get a response.
+
+### Using Services
+#### Create a Client
+
+To create a client: `client = self.create_client(Type, "service_name")`
+To use a client:
+```python
+# To wait for service (logging every second)
+while not client.wait_for_service(1.0):
+    self.get_logger().warn("Waiting for service...")
+
+request = Type.Request()
+# Set the members of the type here
+
+# Send the request (asynchronously; allows us to not be blocked by failed request)
+future = client.call_async(request)
+# Ensure `from functools import partial`; set the callback function to call when request received.
+future.add_done_callback(partial(self.my_callback_function))
+```
+
+Within `my_callback_function`:
+```python
+def my_callback_function(self, future):
+    try:
+        response = future.result()
+    except Exception as e:
+        self.get_logger().error("Service call failed: "+str(e))
+    # We can now deal with the response if applicable.
+```
