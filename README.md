@@ -5,7 +5,8 @@ Here are the tutorials I am following:
 |----------------------------------------------------------------------|-------------|
 | [ROS2 Humble Tutorial](https://www.youtube.com/watch?v=Gg25GfA456o)  | Completed |
 | [MoveIt Quickstart in RViz](https://moveit.picknik.ai/humble/doc/tutorials/quickstart_in_rviz/quickstart_in_rviz_tutorial.html) | Completed |
-| [Your First C++ Project](https://moveit.picknik.ai/humble/doc/tutorials/your_first_project/your_first_project.html) | In Progress |
+| [Your First C++ Project](https://moveit.picknik.ai/humble/doc/tutorials/your_first_project/your_first_project.html) | Completed |
+| [Create a URDF with ROS2](https://www.youtube.com/watch?v=dZ_CyyEvBE0) | In Progress |
 
 
 # The Basic Necessities
