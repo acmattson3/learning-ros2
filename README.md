@@ -207,3 +207,5 @@ def my_callback_function(self, future):
 ```
 
 # URDF Files
+
+URDF files are just XML files formatted in such a way to define the parameters of a robot. 
