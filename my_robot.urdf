@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!-- Everything about our robot goes in here -->
+<robot name="my_robot">
+    <!-- Robots are made up of many 'links' (i.e., each moving part) -->
+    <link name="base_link">
+        <visual>
+            <!-- Defines the actual geometry of this link (the base) -->
+            <geometry>
+                <box size="0.6 0.4 0.2" />
+            </geometry>
+            <!-- The relative XYZ and Roll/Pitch/Yaw of the base (the base is at 0,0,0; makes sense!) -->
+            <origin xyz="0 0 0" rpy="0 0 0">
+        </visual>
+    </link>
+</robot>
