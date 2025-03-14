@@ -1,6 +1,6 @@
-# How to do ROS2 (Humble) things!
+# Here are my personal notes on how to do things in ROS2 Humble!
 
-Here are the tutorials I am following:
+## The tutorials I am following
 | Tutorial                                                             | Status      |
 |----------------------------------------------------------------------|-------------|
 | [ROS2 Humble Tutorial](https://www.youtube.com/watch?v=Gg25GfA456o)  | Completed |
@@ -8,6 +8,18 @@ Here are the tutorials I am following:
 | [Your First C++ Project](https://moveit.picknik.ai/humble/doc/tutorials/your_first_project/your_first_project.html) | Completed |
 | [Create a URDF with ROS2](https://www.youtube.com/watch?v=dZ_CyyEvBE0) | In Progress |
 
+
+## Table of Contents
+* [The Basic Necessities](#the-basic-necessities)
+  * [Installation](#installation)
+  * [Creating a ROS2 Workspace](#creating-a-ros2-workspace)
+  * [Creating a ROS2 Package](#creating-a-ros2-package)
+  * [Creating a ROS2 Node](#creating-a-ros2-node)
+* [General Information](#general-information)
+  * [General Tools](#general-tools)
+  * [All About Topics](#all-about-topics)
+  * [All About Services](#all-about-services)
+* [URDF Files](#urdf-files)
 
 # The Basic Necessities
 
@@ -193,3 +205,5 @@ def my_callback_function(self, future):
         self.get_logger().error("Service call failed: "+str(e))
     # We can now deal with the response if applicable.
 ```
+
+# URDF Files
