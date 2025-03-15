@@ -1,6 +1,19 @@
 <?xml version="1.0"?>
 <!-- Everything about our robot goes in here -->
 <robot name="my_robot">
+
+    <material name="yellow">
+        <color rgba="0.7 0.7 0 1" />
+    </material>
+
+    <material name="cyan">
+        <color rgba="0 0.7 0.7 1" />
+    </material>
+
+    <material name="magenta">
+        <color rgba="0.7 0 0.7 1" />
+    </material>
+
     <!-- Robots are made up of many 'links' (i.e., each moving part) -->
     <link name="base_link">
         <visual>
@@ -8,8 +21,28 @@
             <geometry>
                 <box size="0.6 0.4 0.2" />
             </geometry>
-            <!-- The relative XYZ and Roll/Pitch/Yaw of the base (the base is at 0,0,0; makes sense!) -->
-            <origin xyz="0 0 0" rpy="0 0 0">
+
+            <!-- The relative XYZ and Roll/Pitch/Yaw of the base -->
+            <origin xyz="0 0 0.1" rpy="0 0 0" />
+
+            <!-- References the above defined material -->
+            <material name="yellow" />
+        </visual>
+    </link>
+
+    <joint name="base_lidar_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="lidar" />
+        <origin xyz="0 0 0.225" rpy="0 0 0" />
+    </joint>
+
+    <link name="lidar">
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.05" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="cyan" />
         </visual>
     </link>
 </robot>
