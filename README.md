@@ -208,4 +208,6 @@ def my_callback_function(self, future):
 
 # URDF Files
 
-URDF files are just XML files formatted in such a way to define the parameters of a robot. 
+URDF files are just XML files formatted in such a way to define the parameters of a robot. Everything about your robot is defined within a `<robot>` tag. Within that, each part of your robot is defined in a `<link>` tag, with each link's geometry, origin, material, etc defined here. Then, links are joined together by `<joint>` tags (children of the `<robot>` tag, siblings of `<link>` tags) that define a parent, child, and origin. 
+
+That's pretty much it for URDF files!
